@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Réka\\BCE\\4.félév\\git\\kliensapp\\kliensapp.csproj": {}
+    "C:\\Users\\cseba\\Source\\Repos\\Linguamaze_coursemodul\\kliensapp\\kliensapp.csproj": {}
   },
   "projects": {
-    "C:\\Réka\\BCE\\4.félév\\git\\kliensapp\\kliensapp.csproj": {
+    "C:\\Users\\cseba\\Source\\Repos\\Linguamaze_coursemodul\\kliensapp\\kliensapp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Réka\\BCE\\4.félév\\git\\kliensapp\\kliensapp.csproj",
+        "projectUniqueName": "C:\\Users\\cseba\\Source\\Repos\\Linguamaze_coursemodul\\kliensapp\\kliensapp.csproj",
         "projectName": "kliensapp",
-        "projectPath": "C:\\Réka\\BCE\\4.félév\\git\\kliensapp\\kliensapp.csproj",
-        "packagesPath": "C:\\Users\\Balázs Réka\\.nuget\\packages\\",
-        "outputPath": "C:\\Réka\\BCE\\4.félév\\git\\kliensapp\\obj\\",
+        "projectPath": "C:\\Users\\cseba\\Source\\Repos\\Linguamaze_coursemodul\\kliensapp\\kliensapp.csproj",
+        "packagesPath": "C:\\Users\\cseba\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cseba\\Source\\Repos\\Linguamaze_coursemodul\\kliensapp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Balázs Réka\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\cseba\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

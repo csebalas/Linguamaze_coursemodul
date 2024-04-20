@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("kliensapp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3e251c49aec3b79b5a70d4e868e6cebd912e4c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+930c1cd9e3046661b45b0226e4d1d33bffa680a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("kliensapp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("kliensapp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

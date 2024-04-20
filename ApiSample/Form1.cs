@@ -84,7 +84,7 @@ namespace ApiSample
 
             listBox1.DataSource = list;
 
-            textBox1.Text = "körte";
+            textBox1.Text = "banán";
         }
     }
 }

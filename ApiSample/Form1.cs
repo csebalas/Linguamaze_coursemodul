@@ -1,4 +1,6 @@
 ﻿using Hotcakes.CommerceDTO.v1.Client;
+using Hotcakes.CommerceDTO.v1.Catalog;
+using Hotcakes.CommerceDTO.v1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +25,6 @@ namespace ApiSample
         {
             var url = string.Empty;
             var key = string.Empty;
-            List<string> list = new List<string>();
 
             // Kezdőértékek beállítása vagy parancssori argumentumokból olvasás
             string[] args = Environment.GetCommandLineArgs();
@@ -36,18 +37,30 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
-            var proxy = new Api(url, key);
+            List<string> list = new List<string>();
+
+            var categoryId = "6AD3CD1D-A4F3-47B2-AC7E-63565CA4DB51";
+            var page = 1;
+            var pageSize = int.MaxValue;
+
+            
+
+            Api proxy = new Api(url, key);
 
             var snaps = proxy.CategoriesFindAll();
+            var product = proxy.ProductsFindAll();
+            ApiResponse<PageOfProducts> response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
+            Console.WriteLine(response.Content.ToString());
             if (snaps.Content != null)
             {
-                Console.WriteLine("Found " + snaps.Content.Count + " categories");
-                Console.WriteLine("-- First 5 --");
+                Console.WriteLine(response.Content.ToString());
+                //Console.WriteLine("Found " + snaps.Content.Count + " categories");
+                //Console.WriteLine("-- First 5 --");
                 for (var i = 0; i < 5; i++)
                 {
-                    if (i < snaps.Content.Count)
-                    {
-                        Console.WriteLine(i + ") " + snaps.Content[i].Name + " [" + snaps.Content[i].Bvin + "]");
+                    //if (i < snaps.Content.Count)
+                    //{
+                       // Console.WriteLine(i + ") " + snaps.Content[i].Name + " [" + snaps.Content[i].Bvin + "]");
                         list.Add(snaps.Content[i].Name);
                         var cat = proxy.CategoriesFind(snaps.Content[i].Bvin);
                         if (cat.Errors.Count > 0)
@@ -55,12 +68,12 @@ namespace ApiSample
                             foreach (var err in cat.Errors)
 
                             {
-                                Console.WriteLine("ERROR: " + err.Code + " " + err.Description);
+                                //Console.WriteLine("ERROR: " + err.Code + " " + err.Description);
                             }
                         }
                         else
                         {
-                            Console.WriteLine("By Bvin: " + cat.Content.Name + " | " + cat.Content.Description);
+                            //Console.WriteLine("By Bvin: " + cat.Content.Name + " | " + cat.Content.Description);
                         }
 
                         var catSlug = proxy.CategoriesFindBySlug(snaps.Content[i].RewriteUrl);
@@ -68,23 +81,26 @@ namespace ApiSample
                         {
                             foreach (var err in catSlug.Errors)
                             {
-                                Console.WriteLine("ERROR: " + err.Code + " " + err.Description);
+                                //Console.WriteLine("ERROR: " + err.Code + " " + err.Description);
                             }
                         }
                         else
                         {
-                            Console.WriteLine("By Slug: " + cat.Content.Name + " | " + cat.Content.Description);
+                            //Console.WriteLine("By Slug: " + cat.Content.Name + " | " + cat.Content.Description);
                         }
-                    }
+                    //}
                 }
             }
 
             //Console.WriteLine("Done - Press a key to continue");
             //Console.ReadKey();
 
-            listBox1.DataSource = list;
+            listBoxKurzusok.DataSource = list;
+        }
 
-            textBox1.Text = "körte";
+        void TeltBetoltes()
+        {
+            //var eredmen
         }
     }
 }

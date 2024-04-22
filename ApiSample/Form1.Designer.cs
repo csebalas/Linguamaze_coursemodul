@@ -32,15 +32,27 @@
             this.panelBetelt = new System.Windows.Forms.Panel();
             this.TLeiras = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tSzam = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tNev = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelUj = new System.Windows.Forms.Panel();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnTorles = new System.Windows.Forms.Button();
             this.btnUj = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtCost = new System.Windows.Forms.TextBox();
+            this.CbTax = new System.Windows.Forms.CheckBox();
+            this.numQuantity = new System.Windows.Forms.NumericUpDown();
+            this.CbReviews = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.panelBetelt.SuspendLayout();
+            this.panelUj.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxKurzusok
@@ -50,7 +62,7 @@
             this.listBoxKurzusok.Location = new System.Drawing.Point(18, 21);
             this.listBoxKurzusok.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxKurzusok.Name = "listBoxKurzusok";
-            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 804);
+            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 1429);
             this.listBoxKurzusok.TabIndex = 0;
             this.listBoxKurzusok.SelectedIndexChanged += new System.EventHandler(this.listBoxKurzusok_SelectedIndexChanged);
             // 
@@ -58,20 +70,18 @@
             // 
             this.panelBetelt.Controls.Add(this.TLeiras);
             this.panelBetelt.Controls.Add(this.label2);
-            this.panelBetelt.Controls.Add(this.tSzam);
-            this.panelBetelt.Controls.Add(this.label3);
             this.panelBetelt.Controls.Add(this.tNev);
             this.panelBetelt.Controls.Add(this.label1);
             this.panelBetelt.Location = new System.Drawing.Point(408, 21);
             this.panelBetelt.Name = "panelBetelt";
-            this.panelBetelt.Size = new System.Drawing.Size(471, 804);
+            this.panelBetelt.Size = new System.Drawing.Size(471, 1442);
             this.panelBetelt.TabIndex = 1;
             // 
             // TLeiras
             // 
             this.TLeiras.AutoSize = true;
             this.TLeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.TLeiras.Location = new System.Drawing.Point(64, 373);
+            this.TLeiras.Location = new System.Drawing.Point(75, 218);
             this.TLeiras.MaximumSize = new System.Drawing.Size(400, 0);
             this.TLeiras.Name = "TLeiras";
             this.TLeiras.Size = new System.Drawing.Size(95, 36);
@@ -82,31 +92,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(42, 317);
+            this.label2.Location = new System.Drawing.Point(40, 150);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 37);
             this.label2.TabIndex = 4;
             this.label2.Text = "Leírás";
-            // 
-            // tSzam
-            // 
-            this.tSzam.AutoSize = true;
-            this.tSzam.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.tSzam.Location = new System.Drawing.Point(75, 233);
-            this.tSzam.Name = "tSzam";
-            this.tSzam.Size = new System.Drawing.Size(95, 36);
-            this.tSzam.TabIndex = 3;
-            this.tSzam.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(42, 156);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(240, 37);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Csoportlétszám";
             // 
             // tNev
             // 
@@ -130,6 +120,18 @@
             // 
             // panelUj
             // 
+            this.panelUj.Controls.Add(this.label8);
+            this.panelUj.Controls.Add(this.label7);
+            this.panelUj.Controls.Add(this.label6);
+            this.panelUj.Controls.Add(this.label5);
+            this.panelUj.Controls.Add(this.label4);
+            this.panelUj.Controls.Add(this.CbReviews);
+            this.panelUj.Controls.Add(this.numQuantity);
+            this.panelUj.Controls.Add(this.CbTax);
+            this.panelUj.Controls.Add(this.txtCost);
+            this.panelUj.Controls.Add(this.txtPrice);
+            this.panelUj.Controls.Add(this.txtDescription);
+            this.panelUj.Controls.Add(this.txtName);
             this.panelUj.Location = new System.Drawing.Point(1079, 21);
             this.panelUj.Name = "panelUj";
             this.panelUj.Size = new System.Drawing.Size(652, 804);
@@ -144,6 +146,7 @@
             this.btnInfo.TabIndex = 3;
             this.btnInfo.Text = ">";
             this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnTorles
             // 
@@ -162,12 +165,118 @@
             this.btnUj.TabIndex = 5;
             this.btnUj.Text = "Új kurzus hozzáadása";
             this.btnUj.UseVisualStyleBackColor = true;
+            this.btnUj.Click += new System.EventHandler(this.btnUj_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(128, 78);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(331, 31);
+            this.txtName.TabIndex = 0;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(128, 156);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(436, 31);
+            this.txtDescription.TabIndex = 1;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Location = new System.Drawing.Point(128, 516);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(331, 31);
+            this.txtPrice.TabIndex = 2;
+            // 
+            // txtCost
+            // 
+            this.txtCost.Location = new System.Drawing.Point(128, 589);
+            this.txtCost.Name = "txtCost";
+            this.txtCost.Size = new System.Drawing.Size(331, 31);
+            this.txtCost.TabIndex = 3;
+            // 
+            // CbTax
+            // 
+            this.CbTax.AutoSize = true;
+            this.CbTax.Location = new System.Drawing.Point(128, 738);
+            this.CbTax.Name = "CbTax";
+            this.CbTax.Size = new System.Drawing.Size(97, 29);
+            this.CbTax.TabIndex = 4;
+            this.CbTax.Text = "ÁFA?";
+            this.CbTax.UseVisualStyleBackColor = true;
+            // 
+            // numQuantity
+            // 
+            this.numQuantity.Location = new System.Drawing.Point(128, 664);
+            this.numQuantity.Name = "numQuantity";
+            this.numQuantity.Size = new System.Drawing.Size(120, 31);
+            this.numQuantity.TabIndex = 5;
+            // 
+            // CbReviews
+            // 
+            this.CbReviews.AutoSize = true;
+            this.CbReviews.Location = new System.Drawing.Point(377, 738);
+            this.CbReviews.Name = "CbReviews";
+            this.CbReviews.Size = new System.Drawing.Size(169, 29);
+            this.CbReviews.TabIndex = 6;
+            this.CbReviews.Text = "Értékelések?";
+            this.CbReviews.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label4.Location = new System.Drawing.Point(105, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(181, 36);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Kurzus neve";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label5.Location = new System.Drawing.Point(105, 117);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 36);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Leírás";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label6.Location = new System.Drawing.Point(105, 477);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 36);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Ár";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label7.Location = new System.Drawing.Point(105, 550);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 36);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Költség";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label8.Location = new System.Drawing.Point(105, 625);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(290, 36);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Minimális mennyiség";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1993, 865);
+            this.ClientSize = new System.Drawing.Size(1993, 1759);
             this.Controls.Add(this.btnUj);
             this.Controls.Add(this.btnTorles);
             this.Controls.Add(this.btnInfo);
@@ -177,9 +286,13 @@
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelBetelt.ResumeLayout(false);
             this.panelBetelt.PerformLayout();
+            this.panelUj.ResumeLayout(false);
+            this.panelUj.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -194,9 +307,19 @@
         private System.Windows.Forms.Button btnUj;
         private System.Windows.Forms.Label TLeiras;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label tSzam;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label tNev;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox CbReviews;
+        private System.Windows.Forms.NumericUpDown numQuantity;
+        private System.Windows.Forms.CheckBox CbTax;
+        private System.Windows.Forms.TextBox txtCost;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }

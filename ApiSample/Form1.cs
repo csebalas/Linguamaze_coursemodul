@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Data.SqlTypes;
+using System.Diagnostics;
 
 namespace ApiSample
 {
@@ -19,9 +21,11 @@ namespace ApiSample
         ApiResponse<ProductDTO> p;
         ApiResponse<ProductInventoryDTO> inventory;
         ApiResponse<PageOfProducts> response;
+        ApiResponse<ProductDTO> termek;
         List<Kurzus> productNames = new List<Kurzus>();
         Api proxy;
         string slug;
+        Random random = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -36,18 +40,18 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
+
             
 
             var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
             var page = 1;
             var pageSize = int.MaxValue;
-            var inventoryId = "00cf3c59-5bca-4221-95ca-944233cb1efa";
 
 
             proxy = new Api(url, key);
             //p = proxy.ProductsBySlug(slug);
             //Console.WriteLine(p.Content.ProductName);
-            inventory = proxy.ProductInventoryFind(inventoryId);
+            //inventory = proxy.ProductInventoryFind(inventoryId);
 
             response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
             //kivProductAdatok();
@@ -83,11 +87,15 @@ namespace ApiSample
                 productNames.Clear();
                 foreach (var product in response.Content.Products)
                 {
-                    if (true)
+                    if (product.IsAvailableForSale==false)
                     {
                         Kurzus k = new Kurzus();
                         k.URL = product.UrlSlug;
                         k.Name = product.ProductName;
+                        k.LongDescription = product.LongDescription;
+                        k.MinimumQuantity = product.MinimumQty;
+                        k.AllowReviews = product.AllowReviews;
+                        k.TaxClass = product.TaxSchedule;
                         productNames.Add(k);
                     }
 
@@ -104,11 +112,77 @@ namespace ApiSample
             TLeiras.Text = p.Content.LongDescription;
         }
 
+        void KivAdatBetoltes()
+        {
+            Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+            txtName.Text = kivkurzus.Name;
+            txtDescription.Text = kivkurzus.LongDescription;
+            txtPrice.Text = kivkurzus.SitePrize.ToString(); //????????????????????????????????
+            txtCost.Text = kivkurzus.SiteCost.ToString();   //????????????????????????????????
+            numQuantity.Value = kivkurzus.MinimumQuantity;
+            CbReviews.Checked = Convert.ToBoolean(kivkurzus.AllowReviews);
+            if (kivkurzus.TaxClass==1)
+            {
+                CbTax.Checked = true;
+            }
+            else
+            {
+                CbTax.Checked = false;
+            }
+        }
         public class Kurzus
         {
             public string URL { get; set; }
             public string Name { get; set; }
+            public string LongDescription { get; set; }
+            public int MinimumQuantity { get; set; } 
+            public int SitePrize { get; set; } //???????????????????????????????
+            public int SiteCost { get; set; } //???????????????????????????????????
+            public long TaxClass { get; set; }
+            public bool? AllowReviews { get; set; }
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            KivAdatBetoltes();
+        }
+
+        private void btnUj_Click(object sender, EventArgs e)
+        {
+            decimal price;
+            var ujProduct = new ProductDTO();
+            ujProduct.ProductName = txtName.Text;
+            ujProduct.Sku = "380";
+            if (decimal.TryParse(txtPrice.Text, out price))
+            {
+                ujProduct.SitePrice = price;
+            }
+            ujProduct.InventoryMode = ProductInventoryModeDTO.WhenOutOfStockShow;
+            termek = proxy.ProductsCreate(ujProduct, null);
+            MessageBox.Show("Sikeresen hozzáadva!");
+        }
+
+        static string GenerateRandomSKU(Random random)
+        {
+            // A SKU hossza
+            int length = 8;
+
+            // Lehetséges karakterek az SKU-ban
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            // Az SKU inicializálása
+            char[] sku = new char[length];
+
+            // Véletlenszerű karakterek hozzáadása az SKU-hoz
+            for (int i = 0; i < length; i++)
+            {
+                sku[i] = chars[random.Next(chars.Length)];
+            }
+
+            // Az SKU stringként való visszaadása
+            return new string(sku);
         }
     }
-
 }
+
+

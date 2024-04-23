@@ -22,10 +22,14 @@ namespace ApiSample
         ApiResponse<ProductInventoryDTO> inventory;
         ApiResponse<PageOfProducts> response;
         ApiResponse<ProductDTO> termek;
+        ApiResponse<long> szam;
+        ApiResponse<ProductDTO> update;
         List<Kurzus> productNames = new List<Kurzus>();
         Api proxy;
         string slug;
         Random random = new Random();
+        string nyelvkategoria;
+        string torlendoProductBvin;
         public Form1()
         {
             InitializeComponent();
@@ -90,6 +94,7 @@ namespace ApiSample
                     if (product.IsAvailableForSale==false)
                     {
                         Kurzus k = new Kurzus();
+                        k.Bvin = product.Bvin;
                         k.URL = product.UrlSlug;
                         k.Name = product.ProductName;
                         k.LongDescription = product.LongDescription;
@@ -115,11 +120,36 @@ namespace ApiSample
         void KivAdatBetoltes()
         {
             Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+
             txtName.Text = kivkurzus.Name;
             txtDescription.Text = kivkurzus.LongDescription;
             txtPrice.Text = kivkurzus.SitePrize.ToString(); //????????????????????????????????
             txtCost.Text = kivkurzus.SiteCost.ToString();   //????????????????????????????????
             numQuantity.Value = kivkurzus.MinimumQuantity;
+            comboBoxNyelv.Items.Add("Angol");
+            comboBoxNyelv.Items.Add("Német");
+            comboBoxNyelv.Items.Add("Spanyol");
+            comboBoxNyelv.Items.Add("Olasz");
+            comboBoxNyelv.Items.Add("Francia");
+            comboBoxNyelv.Items.Add("Portugál");
+            comboBoxNyelv.Items.Add("Szlovák");
+            comboBoxNyelv.Items.Add("Horvát");
+            comboBoxNyelv.Items.Add("Kínai");
+            comboBoxNyelv.Items.Add("Orosz");
+            string[] szavak = kivkurzus.Name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string elso_szo = szavak[0];
+            for (int i = 0; i < comboBoxNyelv.Items.Count; i++)
+            {
+                string comboBox_elem = comboBoxNyelv.Items[i].ToString();
+
+                // Ha az aktuális elem megegyezik a keresett szóval, jelöljük ki
+                if (comboBox_elem == elso_szo)
+                {
+                    comboBoxNyelv.SelectedIndex = i;
+                    break; // Ha megtaláltuk a keresett szót, nincs szükségünk további vizsgálatra
+                }
+            }
+
             CbReviews.Checked = Convert.ToBoolean(kivkurzus.AllowReviews);
             if (kivkurzus.TaxClass==1)
             {
@@ -133,6 +163,7 @@ namespace ApiSample
         public class Kurzus
         {
             public string URL { get; set; }
+            public string Bvin { get; set; }
             public string Name { get; set; }
             public string LongDescription { get; set; }
             public int MinimumQuantity { get; set; } 
@@ -151,36 +182,138 @@ namespace ApiSample
         {
             decimal price;
             var ujProduct = new ProductDTO();
+
+            // A kijelölt product eltüntetése az oldalról
+            Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+            torlendoProductBvin = kivkurzus.Bvin;
+
+            var product = proxy.ProductsFind(torlendoProductBvin).Content;
+
+            product.IsSearchable = false;
+            product.Status = 0;
+
+            update = proxy.ProductsUpdate(product);
+
+
+            if (CbTax.Checked == true)
+            {
+                ujProduct.TaxSchedule = 1;
+            }
+            else
+            {
+                ujProduct.TaxSchedule = -1;
+            }
             ujProduct.ProductName = txtName.Text;
-            ujProduct.Sku = "380";
+            szam = proxy.ProductsCountOfAll();
+            ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
             }
             ujProduct.InventoryMode = ProductInventoryModeDTO.WhenOutOfStockShow;
+            ujProduct.MinimumQty = Convert.ToInt32(numQuantity.Value);
+            ujProduct.ManufacturerId = "DBF676FB-C850-44B8-B448-917DB871E0E9";
+            if (CbReviews.Checked == true)
+            {
+                ujProduct.AllowReviews = true;
+            }
+            else
+            {
+                ujProduct.AllowReviews = false;
+            }
+            ujProduct.IsAvailableForSale = true;
+
+            // Véletlenszerű GUID generálása
+            Guid randomGuid = Guid.NewGuid();
+
+            ujProduct.Bvin = randomGuid.ToString();
+            MessageBox.Show(randomGuid.ToString());
             termek = proxy.ProductsCreate(ujProduct, null);
+
+            // csoportos kategóriához hozzáadás
+            var association = new CategoryProductAssociationDTO
+            {
+                CategoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220",
+                ProductId = randomGuid.ToString(),
+            };
+
+            // call the API to create the new category/product association
+            ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
+            NyelvKategoria();
+
+            MessageBox.Show(nyelvkategoria);
+
+            var association2 = new CategoryProductAssociationDTO
+            {
+                CategoryId = nyelvkategoria,
+                ProductId = randomGuid.ToString(),
+            };
+
+            // call the API to create the new category/product association
+            categoryassociation = proxy.CategoryProductAssociationsCreate(association2);
+
+            // Inventory feltöltése
+            var inventoryadatok = new ProductInventoryDTO
+            {
+                ProductBvin = randomGuid.ToString(),
+                QuantityOnHand = 10,
+                LowStockPoint = 0,
+                OutOfStockPoint = 0
+            };
+
+            inventory = proxy.ProductInventoryCreate(inventoryadatok);
+
+
             MessageBox.Show("Sikeresen hozzáadva!");
         }
 
-        static string GenerateRandomSKU(Random random)
+        private void NyelvKategoria()
         {
-            // A SKU hossza
-            int length = 8;
+            // melyik nyelvcsoport
+            string kivnyelv = comboBoxNyelv.SelectedItem.ToString();
 
-            // Lehetséges karakterek az SKU-ban
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            // Az SKU inicializálása
-            char[] sku = new char[length];
-
-            // Véletlenszerű karakterek hozzáadása az SKU-hoz
-            for (int i = 0; i < length; i++)
+            if (kivnyelv == "Angol")
             {
-                sku[i] = chars[random.Next(chars.Length)];
+                nyelvkategoria = "6EBED072-E223-4430-A08B-E74187F0B21E";
             }
-
-            // Az SKU stringként való visszaadása
-            return new string(sku);
+            if (kivnyelv == "Német")
+            {
+                nyelvkategoria = "DA682DC7-60A7-41B7-BAD7-976042912AF4";
+            }
+            if (kivnyelv == "Olasz")
+            {
+                nyelvkategoria = "875914E0-61B0-427E-98D4-E36BE9FE53A2";
+            }
+            if (kivnyelv == "Spanyol")
+            {
+                nyelvkategoria = "A4817D49-E702-4C9E-A911-976DC48FDF47";
+                ;
+            }
+            if (kivnyelv == "Orosz")
+            {
+                nyelvkategoria = "C9D51C0E-B6CE-45C4-A127-0D85C97E254D";
+            }
+            if (kivnyelv == "Kínai")
+            {
+                nyelvkategoria = "C837C97F-67CE-48CB-A215-09263FDD3C90";
+            }
+            if (kivnyelv == "Szlovák")
+            {
+                nyelvkategoria = "D7657A5D-E529-4DE9-9CD1-1BD42F291FD6";
+            }
+            if (kivnyelv == "Portugál")
+            {
+                nyelvkategoria = "5227B8FC-3326-4ED7-9973-F94DA38E836E";
+            }
+            if (kivnyelv == "Francia")
+            {
+                nyelvkategoria = "DD660492-BA6D-4FC2-B504-B774930423D7";
+            }
+            if (kivnyelv == "Horvát")
+            {
+                nyelvkategoria = "9542EFA0-F242-4535-AA6D-D6BC233F7992";
+            }
         }
     }
 }

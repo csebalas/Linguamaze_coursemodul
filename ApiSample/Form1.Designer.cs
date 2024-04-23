@@ -51,6 +51,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.btnInfo = new System.Windows.Forms.Button();
             this.btnUj = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelBetelt.SuspendLayout();
             this.panelUj.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
@@ -63,10 +64,10 @@
             this.listBoxKurzusok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.listBoxKurzusok.FormattingEnabled = true;
             this.listBoxKurzusok.ItemHeight = 25;
-            this.listBoxKurzusok.Location = new System.Drawing.Point(153, 15);
+            this.listBoxKurzusok.Location = new System.Drawing.Point(153, 207);
             this.listBoxKurzusok.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxKurzusok.Name = "listBoxKurzusok";
-            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 1629);
+            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 1429);
             this.listBoxKurzusok.TabIndex = 0;
             this.listBoxKurzusok.SelectedIndexChanged += new System.EventHandler(this.listBoxKurzusok_SelectedIndexChanged);
             // 
@@ -320,12 +321,25 @@
             this.btnUj.UseVisualStyleBackColor = false;
             this.btnUj.Click += new System.EventHandler(this.btnUj_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.button1.Location = new System.Drawing.Point(153, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(336, 144);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "A lista frissítése";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(173)))), ((int)(((byte)(167)))));
             this.ClientSize = new System.Drawing.Size(2874, 1729);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUj);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.panelUj);
@@ -371,5 +385,6 @@
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxNyelv;
+        private System.Windows.Forms.Button button1;
     }
 }

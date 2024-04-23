@@ -26,10 +26,10 @@ namespace ApiSample
         ApiResponse<ProductDTO> update;
         List<Kurzus> productNames = new List<Kurzus>();
         Api proxy;
-        string slug;
+        string bvin;
         Random random = new Random();
         string nyelvkategoria;
-        string torlendoProductBvin;
+        string torlendoProductBvin="";
         public Form1()
         {
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace ApiSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            txtDescription.Height=500;
+                     
             var url = string.Empty;
             var key = string.Empty;
 
@@ -67,10 +67,16 @@ namespace ApiSample
 
         private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
-            slug = kivkurzus.URL.ToString();
-            
-            kivProductAdatok(slug);
+            if (listBoxKurzusok.SelectedItem != null)
+            {
+                Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+                bvin = kivkurzus.Bvin.ToString();
+                kivProductAdatok(bvin);
+            }
+            else
+            {
+                MessageBox.Show("helló");
+            }
         }
 
         void ListaBetoltes(){
@@ -108,14 +114,15 @@ namespace ApiSample
                     }
 
                 }
+                listBoxKurzusok.DataSource = null;
                 listBoxKurzusok.DataSource = productNames;
                 listBoxKurzusok.DisplayMember = "Name";
             }
         }
 
-        void kivProductAdatok(string slug)
+        void kivProductAdatok(string bvin)
         {
-            p = proxy.ProductsBySlug(slug);
+            p = proxy.ProductsFind(bvin);
             tNev.Text = p.Content.ProductName;
             TLeiras.Text = p.Content.LongDescription;
         }
@@ -242,7 +249,6 @@ namespace ApiSample
                 ProductId = randomGuid.ToString(),
             };
 
-            // call the API to create the new category/product association
             ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
             NyelvKategoria();
 
@@ -252,7 +258,6 @@ namespace ApiSample
                 ProductId = randomGuid.ToString(),
             };
 
-            // call the API to create the new category/product association
             categoryassociation = proxy.CategoryProductAssociationsCreate(association2);
 
             var association3 = new CategoryProductAssociationDTO
@@ -261,8 +266,10 @@ namespace ApiSample
                 ProductId = randomGuid.ToString(),
             };
 
-            // call the API to create the new category/product association
             categoryassociation = proxy.CategoryProductAssociationsCreate(association3);
+
+            // Optionök létrehozása
+            ApiResponse<bool> response = proxy.ProductOptionsAssignToProduct("036AE3E0-C9D1-4D9D-AB4D-B04AE67E618D", randomGuid.ToString(), false);
 
             // Inventory feltöltése
             var inventoryadatok = new ProductInventoryDTO
@@ -277,6 +284,7 @@ namespace ApiSample
 
 
             MessageBox.Show("Sikeresen hozzáadva!");
+            listBoxKurzusok.SelectedItem = null;
             ListaBetoltes();
         }
 
@@ -328,6 +336,7 @@ namespace ApiSample
                 nyelvkategoria = "9542EFA0-F242-4535-AA6D-D6BC233F7992";
             }
         }
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {

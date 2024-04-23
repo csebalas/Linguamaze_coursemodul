@@ -58,44 +58,51 @@
             // 
             // listBoxKurzusok
             // 
+            this.listBoxKurzusok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.listBoxKurzusok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
+            this.listBoxKurzusok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.listBoxKurzusok.FormattingEnabled = true;
             this.listBoxKurzusok.ItemHeight = 25;
-            this.listBoxKurzusok.Location = new System.Drawing.Point(18, 21);
+            this.listBoxKurzusok.Location = new System.Drawing.Point(153, 15);
             this.listBoxKurzusok.Margin = new System.Windows.Forms.Padding(6);
             this.listBoxKurzusok.Name = "listBoxKurzusok";
-            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 1429);
+            this.listBoxKurzusok.Size = new System.Drawing.Size(336, 1629);
             this.listBoxKurzusok.TabIndex = 0;
             this.listBoxKurzusok.SelectedIndexChanged += new System.EventHandler(this.listBoxKurzusok_SelectedIndexChanged);
             // 
             // panelBetelt
             // 
+            this.panelBetelt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelBetelt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.panelBetelt.Controls.Add(this.TLeiras);
             this.panelBetelt.Controls.Add(this.label2);
             this.panelBetelt.Controls.Add(this.tNev);
             this.panelBetelt.Controls.Add(this.label1);
-            this.panelBetelt.Location = new System.Drawing.Point(408, 21);
+            this.panelBetelt.Location = new System.Drawing.Point(622, 15);
             this.panelBetelt.Name = "panelBetelt";
-            this.panelBetelt.Size = new System.Drawing.Size(471, 1442);
+            this.panelBetelt.Size = new System.Drawing.Size(512, 1624);
             this.panelBetelt.TabIndex = 1;
             // 
             // TLeiras
             // 
             this.TLeiras.AutoSize = true;
-            this.TLeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.TLeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.TLeiras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.TLeiras.Location = new System.Drawing.Point(75, 218);
             this.TLeiras.MaximumSize = new System.Drawing.Size(400, 0);
             this.TLeiras.Name = "TLeiras";
-            this.TLeiras.Size = new System.Drawing.Size(95, 36);
+            this.TLeiras.Size = new System.Drawing.Size(86, 31);
             this.TLeiras.TabIndex = 5;
             this.TLeiras.Text = "label4";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.label2.Location = new System.Drawing.Point(40, 150);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 37);
+            this.label2.Size = new System.Drawing.Size(110, 37);
             this.label2.TabIndex = 4;
             this.label2.Text = "Leírás";
             // 
@@ -103,6 +110,7 @@
             // 
             this.tNev.AutoSize = true;
             this.tNev.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.tNev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.tNev.Location = new System.Drawing.Point(75, 87);
             this.tNev.Name = "tNev";
             this.tNev.Size = new System.Drawing.Size(95, 36);
@@ -112,15 +120,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.label1.Location = new System.Drawing.Point(40, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 37);
+            this.label1.Size = new System.Drawing.Size(204, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Kurzus neve";
             // 
             // panelUj
             // 
+            this.panelUj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelUj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.panelUj.Controls.Add(this.label3);
             this.panelUj.Controls.Add(this.comboBoxNyelv);
             this.panelUj.Controls.Add(this.label8);
@@ -135,92 +146,103 @@
             this.panelUj.Controls.Add(this.txtPrice);
             this.panelUj.Controls.Add(this.txtDescription);
             this.panelUj.Controls.Add(this.txtName);
-            this.panelUj.Location = new System.Drawing.Point(1079, 21);
+            this.panelUj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.panelUj.Location = new System.Drawing.Point(1375, 15);
             this.panelUj.Name = "panelUj";
-            this.panelUj.Size = new System.Drawing.Size(652, 804);
+            this.panelUj.Size = new System.Drawing.Size(918, 1624);
             this.panelUj.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(105, 233);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.label3.Location = new System.Drawing.Point(105, 833);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 36);
+            this.label3.Size = new System.Drawing.Size(100, 37);
             this.label3.TabIndex = 13;
             this.label3.Text = "Nyelv";
             // 
             // comboBoxNyelv
             // 
+            this.comboBoxNyelv.BackColor = System.Drawing.Color.White;
             this.comboBoxNyelv.FormattingEnabled = true;
-            this.comboBoxNyelv.Location = new System.Drawing.Point(128, 272);
+            this.comboBoxNyelv.Location = new System.Drawing.Point(112, 908);
             this.comboBoxNyelv.Name = "comboBoxNyelv";
-            this.comboBoxNyelv.Size = new System.Drawing.Size(121, 33);
+            this.comboBoxNyelv.Size = new System.Drawing.Size(331, 33);
             this.comboBoxNyelv.TabIndex = 12;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label8.Location = new System.Drawing.Point(105, 625);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.label8.Location = new System.Drawing.Point(105, 1264);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(290, 36);
+            this.label8.Size = new System.Drawing.Size(331, 37);
             this.label8.TabIndex = 11;
             this.label8.Text = "Minimális mennyiség";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label7.Location = new System.Drawing.Point(105, 550);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.label7.Location = new System.Drawing.Point(105, 1126);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 36);
+            this.label7.Size = new System.Drawing.Size(130, 37);
             this.label7.TabIndex = 10;
             this.label7.Text = "Költség";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label6.Location = new System.Drawing.Point(105, 477);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.label6.Location = new System.Drawing.Point(105, 979);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 36);
+            this.label6.Size = new System.Drawing.Size(52, 37);
             this.label6.TabIndex = 9;
             this.label6.Text = "Ár";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label5.Location = new System.Drawing.Point(105, 117);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.label5.Location = new System.Drawing.Point(105, 159);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 36);
+            this.label5.Size = new System.Drawing.Size(110, 37);
             this.label5.TabIndex = 8;
             this.label5.Text = "Leírás";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.label4.Location = new System.Drawing.Point(105, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(181, 36);
+            this.label4.Size = new System.Drawing.Size(204, 37);
             this.label4.TabIndex = 7;
             this.label4.Text = "Kurzus neve";
             // 
             // CbReviews
             // 
             this.CbReviews.AutoSize = true;
-            this.CbReviews.Location = new System.Drawing.Point(377, 738);
+            this.CbReviews.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CbReviews.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.CbReviews.Location = new System.Drawing.Point(471, 1400);
             this.CbReviews.Name = "CbReviews";
-            this.CbReviews.Size = new System.Drawing.Size(169, 29);
+            this.CbReviews.Size = new System.Drawing.Size(242, 41);
             this.CbReviews.TabIndex = 6;
             this.CbReviews.Text = "Értékelések?";
             this.CbReviews.UseVisualStyleBackColor = true;
             // 
             // numQuantity
             // 
-            this.numQuantity.Location = new System.Drawing.Point(128, 664);
+            this.numQuantity.BackColor = System.Drawing.Color.White;
+            this.numQuantity.Location = new System.Drawing.Point(112, 1326);
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(120, 31);
             this.numQuantity.TabIndex = 5;
@@ -228,36 +250,45 @@
             // CbTax
             // 
             this.CbTax.AutoSize = true;
-            this.CbTax.Location = new System.Drawing.Point(128, 738);
+            this.CbTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CbTax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.CbTax.Location = new System.Drawing.Point(112, 1400);
             this.CbTax.Name = "CbTax";
-            this.CbTax.Size = new System.Drawing.Size(97, 29);
+            this.CbTax.Size = new System.Drawing.Size(134, 41);
             this.CbTax.TabIndex = 4;
             this.CbTax.Text = "ÁFA?";
             this.CbTax.UseVisualStyleBackColor = true;
             // 
             // txtCost
             // 
-            this.txtCost.Location = new System.Drawing.Point(128, 589);
+            this.txtCost.BackColor = System.Drawing.Color.White;
+            this.txtCost.Location = new System.Drawing.Point(112, 1192);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(331, 31);
             this.txtCost.TabIndex = 3;
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(128, 516);
+            this.txtPrice.BackColor = System.Drawing.Color.White;
+            this.txtPrice.Location = new System.Drawing.Point(112, 1047);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(331, 31);
             this.txtPrice.TabIndex = 2;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(128, 156);
+            this.txtDescription.BackColor = System.Drawing.Color.White;
+            this.txtDescription.Location = new System.Drawing.Point(128, 221);
+            this.txtDescription.MaximumSize = new System.Drawing.Size(400, 500);
+            this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(436, 31);
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescription.Size = new System.Drawing.Size(400, 500);
             this.txtDescription.TabIndex = 1;
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.Location = new System.Drawing.Point(128, 78);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(331, 31);
@@ -265,30 +296,36 @@
             // 
             // btnInfo
             // 
+            this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.btnInfo.Location = new System.Drawing.Point(941, 317);
+            this.btnInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.btnInfo.Location = new System.Drawing.Point(1192, 565);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(78, 145);
             this.btnInfo.TabIndex = 3;
             this.btnInfo.Text = ">";
-            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.UseVisualStyleBackColor = false;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // btnUj
             // 
-            this.btnUj.Location = new System.Drawing.Point(1754, 332);
+            this.btnUj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
+            this.btnUj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnUj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
+            this.btnUj.Location = new System.Drawing.Point(2440, 565);
             this.btnUj.Name = "btnUj";
-            this.btnUj.Size = new System.Drawing.Size(208, 108);
+            this.btnUj.Size = new System.Drawing.Size(346, 160);
             this.btnUj.TabIndex = 5;
             this.btnUj.Text = "A kurzus cseréje";
-            this.btnUj.UseVisualStyleBackColor = true;
+            this.btnUj.UseVisualStyleBackColor = false;
             this.btnUj.Click += new System.EventHandler(this.btnUj_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1993, 1759);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(173)))), ((int)(((byte)(167)))));
+            this.ClientSize = new System.Drawing.Size(2874, 1729);
             this.Controls.Add(this.btnUj);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.panelUj);
@@ -298,6 +335,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelBetelt.ResumeLayout(false);
             this.panelBetelt.PerformLayout();

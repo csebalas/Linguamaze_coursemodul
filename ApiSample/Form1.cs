@@ -37,7 +37,7 @@ namespace ApiSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            txtDescription.Height=500;
             var url = string.Empty;
             var key = string.Empty;
 
@@ -75,6 +75,7 @@ namespace ApiSample
 
         void ListaBetoltes(){
 
+
             if (response.Errors.Count > 0)
             {
                 foreach (var err in response.Errors)
@@ -91,12 +92,14 @@ namespace ApiSample
                 productNames.Clear();
                 foreach (var product in response.Content.Products)
                 {
-                    if (product.IsAvailableForSale==false)
+                    if (product.IsAvailableForSale==false && product.Bvin!=torlendoProductBvin)
                     {
                         Kurzus k = new Kurzus();
                         k.Bvin = product.Bvin;
                         k.URL = product.UrlSlug;
                         k.Name = product.ProductName;
+                        k.SitePrize = product.SitePrice;
+                        k.SiteCost = product.SiteCost;
                         k.LongDescription = product.LongDescription;
                         k.MinimumQuantity = product.MinimumQty;
                         k.AllowReviews = product.AllowReviews;
@@ -123,8 +126,8 @@ namespace ApiSample
 
             txtName.Text = kivkurzus.Name;
             txtDescription.Text = kivkurzus.LongDescription;
-            txtPrice.Text = kivkurzus.SitePrize.ToString(); //????????????????????????????????
-            txtCost.Text = kivkurzus.SiteCost.ToString();   //????????????????????????????????
+            txtPrice.Text = Math.Round(kivkurzus.SitePrize, 0).ToString();
+            txtCost.Text = Math.Round(kivkurzus.SiteCost, 0).ToString();
             numQuantity.Value = kivkurzus.MinimumQuantity;
             comboBoxNyelv.Items.Add("Angol");
             comboBoxNyelv.Items.Add("Német");
@@ -167,8 +170,8 @@ namespace ApiSample
             public string Name { get; set; }
             public string LongDescription { get; set; }
             public int MinimumQuantity { get; set; } 
-            public int SitePrize { get; set; } //???????????????????????????????
-            public int SiteCost { get; set; } //???????????????????????????????????
+            public decimal SitePrize { get; set; }
+            public decimal SiteCost { get; set; }
             public long TaxClass { get; set; }
             public bool? AllowReviews { get; set; }
         }
@@ -223,11 +226,13 @@ namespace ApiSample
             }
             ujProduct.IsAvailableForSale = true;
 
+            ujProduct.SitePrice = decimal.Parse(txtPrice.Text);
+            ujProduct.SiteCost = decimal.Parse(txtCost.Text);
+
             // Véletlenszerű GUID generálása
             Guid randomGuid = Guid.NewGuid();
 
             ujProduct.Bvin = randomGuid.ToString();
-            MessageBox.Show(randomGuid.ToString());
             termek = proxy.ProductsCreate(ujProduct, null);
 
             // csoportos kategóriához hozzáadás
@@ -241,8 +246,6 @@ namespace ApiSample
             ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
             NyelvKategoria();
 
-            MessageBox.Show(nyelvkategoria);
-
             var association2 = new CategoryProductAssociationDTO
             {
                 CategoryId = nyelvkategoria,
@@ -251,6 +254,15 @@ namespace ApiSample
 
             // call the API to create the new category/product association
             categoryassociation = proxy.CategoryProductAssociationsCreate(association2);
+
+            var association3 = new CategoryProductAssociationDTO
+            {
+                CategoryId = "B227792B-9960-47F0-9B76-7EAACA726F4B",
+                ProductId = randomGuid.ToString(),
+            };
+
+            // call the API to create the new category/product association
+            categoryassociation = proxy.CategoryProductAssociationsCreate(association3);
 
             // Inventory feltöltése
             var inventoryadatok = new ProductInventoryDTO
@@ -265,6 +277,7 @@ namespace ApiSample
 
 
             MessageBox.Show("Sikeresen hozzáadva!");
+            ListaBetoltes();
         }
 
         private void NyelvKategoria()
@@ -313,6 +326,16 @@ namespace ApiSample
             if (kivnyelv == "Horvát")
             {
                 nyelvkategoria = "9542EFA0-F242-4535-AA6D-D6BC233F7992";
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Biztosan be szeretné zárni az ablakot?", "Bezárás megerősítése", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                // Ha a felhasználó nem akarja bezárni az ablakot, akkor megállítjuk a bezárást
+                e.Cancel = true;
             }
         }
     }

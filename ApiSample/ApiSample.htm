@@ -23,16 +23,18 @@
 		// the path where the API is
 		var apiPath = "/DesktopModules/Hotcakes/API/rest/v1/";  
         // endpoint as shown in the documentation
-		var endPoint = "categories";  
+		var endPoint = "products";  
 		// get this from the store admin
         var apiKey = "1-64869949-9801-4b5c-bd4b-326377c14130";  
 
         $(document).ready(function() {
-
+            var page = 1;
+            var pageSize = int.MAX_VALUE;
+            var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
             $.ajax({
                 dataType: "json",
-                url: url + apiPath + endPoint,
-                data: { key: apiKey },
+                url: url + apiPath + endPoint + "?key=" + apiKey + "&bycategory=" + categoryId + "&page=" + page + "&pagesize=" + pageSize,
+                //data: { key: apiKey },
                 type: 'GET',
                 success: function (data) {
                     $('#lblStatus').html("Success!");

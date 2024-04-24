@@ -314,7 +314,7 @@ namespace ApiSample
             if (kivnyelv == "Olasz")
             {
                 nyelvkategoria = "875914E0-61B0-427E-98D4-E36BE9FE53A2";
-                image = "italiano-course.jpg";
+                image = "italiano_course.jpg";
             }
             if (kivnyelv == "Spanyol")
             {

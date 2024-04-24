@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 
 namespace ApiSample
@@ -47,39 +47,34 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
-            var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
-            var page = 1;
-            var pageSize = int.MaxValue;
-
             proxy = new Api(url, key);
-            //p = proxy.ProductsBySlug(slug);
-            //Console.WriteLine(p.Content.ProductName);
-            //inventory = proxy.ProductInventoryFind(inventoryId);
-
-            response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
-            //kivProductAdatok();
-
-            ListaBetoltes();
-
         }
 
-
-        private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxKurzusok.SelectedItem != null)
+        private void controlClear()
+        {      
+            foreach (Control control in this.Controls)
             {
-                Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
-                bvin = kivkurzus.Bvin.ToString();
-                kivProductAdatok(bvin);
+                if (control is ListBox)
+                {
+                    ((ListBox)control).DataSource = null;
+                    ((ListBox)control).Items.Clear();
+                }
             }
-            else
-            {
-                MessageBox.Show("helló");
-            }
+            productNames.Clear();
+            tNev.Text = "";
+            txtName.Text = "";
+            txtDescription.Text = "";
+            txtPrice.Text = "";
+            txtCost.Text = "";
+            numQuantity.Value = 0;
+            comboBoxNyelv.Items.Clear();
+            comboBoxNyelv.SelectedIndex = -1;
+            TLeiras.Text = "";
         }
 
         void ListaBetoltes(){
-
+            controlClear();
+            response = proxy.ProductsFindForCategory("C49FBC33-8761-4008-AD03-2981BBB6E220", 1, int.MaxValue);
 
             if (response.Errors.Count > 0)
             {
@@ -94,7 +89,6 @@ namespace ApiSample
             }
             else
             {
-                productNames.Clear();
                 foreach (var product in response.Content.Products)
                 {
                     if (product.IsAvailableForSale==false && product.Bvin!=torlendoProductBvin)
@@ -113,9 +107,18 @@ namespace ApiSample
                     }
 
                 }
-                listBoxKurzusok.DataSource = null;
                 listBoxKurzusok.DataSource = productNames;
                 listBoxKurzusok.DisplayMember = "Name";
+            }
+        }
+
+        private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxKurzusok.SelectedItem != null)
+            {
+                Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+                bvin = kivkurzus.Bvin.ToString();
+                kivProductAdatok(bvin);
             }
         }
 
@@ -215,6 +218,7 @@ namespace ApiSample
             ujProduct.ProductName = txtName.Text;
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
+            ujProduct.LongDescription=txtDescription.Text;
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
@@ -290,7 +294,7 @@ namespace ApiSample
             inventory = proxy.ProductInventoryCreate(inventoryadatok);
 
             MessageBox.Show("Sikeresen hozzáadva!");
-            listBoxKurzusok.SelectedItem = null;
+            listBoxKurzusok.SelectedIndex = -1;
             ListaBetoltes();
         }
 
@@ -363,8 +367,12 @@ namespace ApiSample
                 // Ha a felhasználó nem akarja bezárni az ablakot, akkor megállítjuk a bezárást
                 e.Cancel = true;
             }
+            streamWriter.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListaBetoltes();
         }
     }
 }
-
-

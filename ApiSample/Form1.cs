@@ -32,7 +32,6 @@ namespace ApiSample
         string nyelvkategoria;
         string torlendoProductBvin="";
         string image;
-        StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
         public Form1()
         {
             InitializeComponent();
@@ -190,8 +189,31 @@ namespace ApiSample
             KivAdatBetoltes();
         }
 
+        public bool ValidateNewProductData()
+        {
+            decimal price, cost;
+
+            // Ellenőrizzük, hogy a szükséges mezők ki vannak-e töltve
+            if (string.IsNullOrEmpty(txtName.Text))
+                return false;
+            if (!decimal.TryParse(txtPrice.Text, out price))
+                return false;
+            if (!decimal.TryParse(txtCost.Text, out cost))
+                return false;
+            if (listBoxKurzusok.SelectedItem == null)
+                return false;
+
+            return true;
+        }
+
+
         private void btnUj_Click(object sender, EventArgs e)
         {
+            if (!ValidateNewProductData())
+            {
+                MessageBox.Show("Hiányzó adatok! Kérem, töltse ki az összes szükséges mezőt.");
+                return;
+            }
             decimal price;
             var ujProduct = new ProductDTO();
 
@@ -218,7 +240,7 @@ namespace ApiSample
             ujProduct.ProductName = txtName.Text;
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
-            ujProduct.LongDescription=txtDescription.Text;
+            ujProduct.LongDescription = txtDescription.Text;
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
@@ -250,8 +272,10 @@ namespace ApiSample
             ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
 
+            StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
             streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products" + ujProduct.Bvin);
             streamWriter.WriteLine(image);
+            streamWriter.Close();
 
             // csoportos kategóriához hozzáadás
             var association = new CategoryProductAssociationDTO
@@ -261,7 +285,7 @@ namespace ApiSample
             };
 
             ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
-            
+
 
             var association2 = new CategoryProductAssociationDTO
             {
@@ -367,7 +391,7 @@ namespace ApiSample
                 // Ha a felhasználó nem akarja bezárni az ablakot, akkor megállítjuk a bezárást
                 e.Cancel = true;
             }
-            streamWriter.Close();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

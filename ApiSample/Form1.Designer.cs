@@ -383,7 +383,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBoxKurzusok;
+        public System.Windows.Forms.ListBox listBoxKurzusok;
         private System.Windows.Forms.Panel panelBetelt;
         private System.Windows.Forms.Panel panelUj;
         private System.Windows.Forms.Button btnInfo;
@@ -392,7 +392,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label tNev;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtName;
+        public System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -402,8 +402,8 @@
         private System.Windows.Forms.CheckBox CbReviews;
         private System.Windows.Forms.NumericUpDown numQuantity;
         private System.Windows.Forms.CheckBox CbTax;
-        private System.Windows.Forms.TextBox txtCost;
-        private System.Windows.Forms.TextBox txtPrice;
+        public System.Windows.Forms.TextBox txtCost;
+        public System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxNyelv;
         private System.Windows.Forms.Button button1;

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.IO;
 
 namespace ApiSample
 {
@@ -31,6 +32,7 @@ namespace ApiSample
         string nyelvkategoria;
         string torlendoProductBvin="";
         string image;
+        StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
         public Form1()
         {
             InitializeComponent();
@@ -243,6 +245,9 @@ namespace ApiSample
             ujProduct.ImageFileSmall = image;
             ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
+
+            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products" + ujProduct.Bvin);
+            streamWriter.WriteLine(image);
 
             // csoportos kategóriához hozzáadás
             var association = new CategoryProductAssociationDTO

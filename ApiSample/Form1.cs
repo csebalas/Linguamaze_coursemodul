@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Drawing.Printing;
+using System.IO;
 
 namespace ApiSample
 {
@@ -31,6 +32,7 @@ namespace ApiSample
         string nyelvkategoria;
         string torlendoProductBvin="";
         string image;
+        StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
         public Form1()
         {
             InitializeComponent();
@@ -248,6 +250,9 @@ namespace ApiSample
             ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
 
+            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products" + ujProduct.Bvin);
+            streamWriter.WriteLine(image);
+
             // csoportos kategóriához hozzáadás
             var association = new CategoryProductAssociationDTO
             {
@@ -313,7 +318,7 @@ namespace ApiSample
             if (kivnyelv == "Olasz")
             {
                 nyelvkategoria = "875914E0-61B0-427E-98D4-E36BE9FE53A2";
-                image = "italiano-course.jpg";
+                image = "italiano_course.jpg";
             }
             if (kivnyelv == "Spanyol")
             {
@@ -362,6 +367,7 @@ namespace ApiSample
                 // Ha a felhasználó nem akarja bezárni az ablakot, akkor megállítjuk a bezárást
                 e.Cancel = true;
             }
+            streamWriter.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

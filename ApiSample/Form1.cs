@@ -45,17 +45,7 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
-            //var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
-            //var page = 1;
-            //var pageSize = int.MaxValue;
-
             proxy = new Api(url, key);
-
-            //response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
-            //kivProductAdatok();
-
-            //ListaBetoltes();
-
         }
 
         private void controlClear()
@@ -75,29 +65,16 @@ namespace ApiSample
                 {
                     ((ListBox)control).Items.Clear();
                 }
+                else if (control is CheckBox)
+                {
+                    ((CheckBox)control).Checked = false;
+                }
                 else if (control is Label)
                 {
-                    ((Label)control).Text = string.Empty; // Ürítsd a Label text tartalmát
+                    ((Label)control).Text = string.Empty;
                 }
-            }
-            
+            }           
             productNames.Clear();
-            
-
-        }
-
-        private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (listBoxKurzusok.SelectedItem != null)
-            {
-                Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
-                bvin = kivkurzus.Bvin.ToString();
-                kivProductAdatok(bvin);
-            }
-            else
-            {
-                MessageBox.Show("helló");
-            }
         }
 
         void ListaBetoltes(){
@@ -135,9 +112,18 @@ namespace ApiSample
                     }
 
                 }
-
                 listBoxKurzusok.DataSource = productNames;
                 listBoxKurzusok.DisplayMember = "Name";
+            }
+        }
+
+        private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxKurzusok.SelectedItem != null)
+            {
+                Kurzus kivkurzus = listBoxKurzusok.SelectedItem as Kurzus;
+                bvin = kivkurzus.Bvin.ToString();
+                kivProductAdatok(bvin);
             }
         }
 

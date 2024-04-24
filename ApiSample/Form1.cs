@@ -30,6 +30,7 @@ namespace ApiSample
         Random random = new Random();
         string nyelvkategoria;
         string torlendoProductBvin="";
+        string image;
         public Form1()
         {
             InitializeComponent();
@@ -44,13 +45,9 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
-
-            
-
             var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
             var page = 1;
             var pageSize = int.MaxValue;
-
 
             proxy = new Api(url, key);
             //p = proxy.ProductsBySlug(slug);
@@ -240,6 +237,11 @@ namespace ApiSample
             Guid randomGuid = Guid.NewGuid();
 
             ujProduct.Bvin = randomGuid.ToString();
+
+            NyelvKategoria();
+
+            ujProduct.ImageFileSmall = image;
+            ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
 
             // csoportos kategóriához hozzáadás
@@ -250,7 +252,7 @@ namespace ApiSample
             };
 
             ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
-            NyelvKategoria();
+            
 
             var association2 = new CategoryProductAssociationDTO
             {
@@ -282,7 +284,6 @@ namespace ApiSample
 
             inventory = proxy.ProductInventoryCreate(inventoryadatok);
 
-
             MessageBox.Show("Sikeresen hozzáadva!");
             listBoxKurzusok.SelectedItem = null;
             ListaBetoltes();
@@ -297,43 +298,54 @@ namespace ApiSample
             if (kivnyelv == "Angol")
             {
                 nyelvkategoria = "6EBED072-E223-4430-A08B-E74187F0B21E";
+                image = "english-course.jpg";
+
             }
             if (kivnyelv == "Német")
             {
                 nyelvkategoria = "DA682DC7-60A7-41B7-BAD7-976042912AF4";
+                image = "deutsch-kurs.jpg";
             }
             if (kivnyelv == "Olasz")
             {
                 nyelvkategoria = "875914E0-61B0-427E-98D4-E36BE9FE53A2";
+                image = "italiano-course.jpg";
             }
             if (kivnyelv == "Spanyol")
             {
                 nyelvkategoria = "A4817D49-E702-4C9E-A911-976DC48FDF47";
+                image = "spanish-course.jpg";
                 ;
             }
             if (kivnyelv == "Orosz")
             {
                 nyelvkategoria = "C9D51C0E-B6CE-45C4-A127-0D85C97E254D";
+                image = "russian-course.jpg";
             }
             if (kivnyelv == "Kínai")
             {
                 nyelvkategoria = "C837C97F-67CE-48CB-A215-09263FDD3C90";
+                image = "chinese-course.jpg";
             }
             if (kivnyelv == "Szlovák")
             {
                 nyelvkategoria = "D7657A5D-E529-4DE9-9CD1-1BD42F291FD6";
+                image = "slovakian-course.jpg";
             }
             if (kivnyelv == "Portugál")
             {
                 nyelvkategoria = "5227B8FC-3326-4ED7-9973-F94DA38E836E";
+                image = "portuguese-course.jpg";
             }
             if (kivnyelv == "Francia")
             {
                 nyelvkategoria = "DD660492-BA6D-4FC2-B504-B774930423D7";
+                image = "french-course.jpg";
             }
             if (kivnyelv == "Horvát")
             {
                 nyelvkategoria = "9542EFA0-F242-4535-AA6D-D6BC233F7992";
+                image = "croatian-course.jpg";
             }
         }
 

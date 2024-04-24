@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.SqlTypes;
 using System.Diagnostics;
+using System.Drawing.Printing;
 
 namespace ApiSample
 {
@@ -45,22 +45,46 @@ namespace ApiSample
             if (url == string.Empty) url = "http://20.234.113.211:8101/";
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
-            var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
-            var page = 1;
-            var pageSize = int.MaxValue;
+            //var categoryId = "C49FBC33-8761-4008-AD03-2981BBB6E220";
+            //var page = 1;
+            //var pageSize = int.MaxValue;
 
             proxy = new Api(url, key);
-            //p = proxy.ProductsBySlug(slug);
-            //Console.WriteLine(p.Content.ProductName);
-            //inventory = proxy.ProductInventoryFind(inventoryId);
 
-            response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
+            //response = proxy.ProductsFindForCategory(categoryId, page, pageSize);
             //kivProductAdatok();
 
-            ListaBetoltes();
+            //ListaBetoltes();
 
         }
 
+        private void controlClear()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Text = string.Empty;
+                }
+                else if (control is ListBox)
+                {
+                    ((ListBox)control).DataSource = null;
+                    ((ListBox)control).Items.Clear();
+                }
+                else if (control is ComboBox)
+                {
+                    ((ListBox)control).Items.Clear();
+                }
+                else if (control is Label)
+                {
+                    ((Label)control).Text = string.Empty; // Ürítsd a Label text tartalmát
+                }
+            }
+            
+            productNames.Clear();
+            
+
+        }
 
         private void listBoxKurzusok_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,7 +101,8 @@ namespace ApiSample
         }
 
         void ListaBetoltes(){
-
+            controlClear();
+            response = proxy.ProductsFindForCategory("C49FBC33-8761-4008-AD03-2981BBB6E220", 1, int.MaxValue);
 
             if (response.Errors.Count > 0)
             {
@@ -92,7 +117,6 @@ namespace ApiSample
             }
             else
             {
-                productNames.Clear();
                 foreach (var product in response.Content.Products)
                 {
                     if (product.IsAvailableForSale==false && product.Bvin!=torlendoProductBvin)
@@ -111,7 +135,7 @@ namespace ApiSample
                     }
 
                 }
-                listBoxKurzusok.DataSource = null;
+
                 listBoxKurzusok.DataSource = productNames;
                 listBoxKurzusok.DisplayMember = "Name";
             }
@@ -285,7 +309,7 @@ namespace ApiSample
             inventory = proxy.ProductInventoryCreate(inventoryadatok);
 
             MessageBox.Show("Sikeresen hozzáadva!");
-            listBoxKurzusok.SelectedItem = null;
+            listBoxKurzusok.SelectedIndex = -1;
             ListaBetoltes();
         }
 
@@ -359,7 +383,10 @@ namespace ApiSample
                 e.Cancel = true;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ListaBetoltes();
+        }
     }
 }
-
-

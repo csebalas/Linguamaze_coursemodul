@@ -49,32 +49,25 @@ namespace ApiSample
         }
 
         private void controlClear()
-        {
+        {      
             foreach (Control control in this.Controls)
             {
-                if (control is TextBox)
-                {
-                    ((TextBox)control).Text = string.Empty;
-                }
-                else if (control is ListBox)
+                if (control is ListBox)
                 {
                     ((ListBox)control).DataSource = null;
                     ((ListBox)control).Items.Clear();
                 }
-                else if (control is ComboBox)
-                {
-                    ((ListBox)control).Items.Clear();
-                }
-                else if (control is CheckBox)
-                {
-                    ((CheckBox)control).Checked = false;
-                }
-                else if (control is Label)
-                {
-                    ((Label)control).Text = string.Empty;
-                }
-            }           
+            }
             productNames.Clear();
+            tNev.Text = "";
+            txtName.Text = "";
+            txtDescription.Text = "";
+            txtPrice.Text = "";
+            txtCost.Text = "";
+            numQuantity.Value = 0;
+            comboBoxNyelv.Items.Clear();
+            comboBoxNyelv.SelectedIndex = -1;
+            TLeiras.Text = "";
         }
 
         void ListaBetoltes(){
@@ -223,6 +216,7 @@ namespace ApiSample
             ujProduct.ProductName = txtName.Text;
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
+            ujProduct.LongDescription=txtDescription.Text;
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;

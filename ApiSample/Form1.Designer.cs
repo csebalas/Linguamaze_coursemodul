@@ -59,28 +59,31 @@
             // 
             // listBoxKurzusok
             // 
-            this.listBoxKurzusok.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.listBoxKurzusok.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.listBoxKurzusok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.listBoxKurzusok.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
             this.listBoxKurzusok.FormattingEnabled = true;
-            this.listBoxKurzusok.Location = new System.Drawing.Point(76, 108);
+            this.listBoxKurzusok.ItemHeight = 20;
+            this.listBoxKurzusok.Location = new System.Drawing.Point(44, 109);
+            this.listBoxKurzusok.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBoxKurzusok.Name = "listBoxKurzusok";
-            this.listBoxKurzusok.Size = new System.Drawing.Size(170, 745);
+            this.listBoxKurzusok.Size = new System.Drawing.Size(232, 544);
             this.listBoxKurzusok.TabIndex = 0;
             this.listBoxKurzusok.SelectedIndexChanged += new System.EventHandler(this.listBoxKurzusok_SelectedIndexChanged);
             // 
             // panelBetelt
             // 
-            this.panelBetelt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelBetelt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBetelt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.panelBetelt.Controls.Add(this.TLeiras);
             this.panelBetelt.Controls.Add(this.label2);
             this.panelBetelt.Controls.Add(this.tNev);
             this.panelBetelt.Controls.Add(this.label1);
-            this.panelBetelt.Location = new System.Drawing.Point(311, 8);
-            this.panelBetelt.Margin = new System.Windows.Forms.Padding(2);
+            this.panelBetelt.Location = new System.Drawing.Point(317, 12);
             this.panelBetelt.Name = "panelBetelt";
-            this.panelBetelt.Size = new System.Drawing.Size(256, 844);
+            this.panelBetelt.Size = new System.Drawing.Size(252, 646);
             this.panelBetelt.TabIndex = 1;
             // 
             // TLeiras
@@ -88,23 +91,20 @@
             this.TLeiras.AutoSize = true;
             this.TLeiras.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.TLeiras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.TLeiras.Location = new System.Drawing.Point(38, 113);
-            this.TLeiras.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.TLeiras.Location = new System.Drawing.Point(57, 174);
             this.TLeiras.MaximumSize = new System.Drawing.Size(200, 0);
             this.TLeiras.Name = "TLeiras";
-            this.TLeiras.Size = new System.Drawing.Size(46, 17);
+            this.TLeiras.Size = new System.Drawing.Size(0, 25);
             this.TLeiras.TabIndex = 5;
-            this.TLeiras.Text = "label4";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label2.Location = new System.Drawing.Point(20, 78);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(30, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 20);
+            this.label2.Size = new System.Drawing.Size(85, 29);
             this.label2.TabIndex = 4;
             this.label2.Text = "Leírás";
             // 
@@ -113,28 +113,26 @@
             this.tNev.AutoSize = true;
             this.tNev.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.tNev.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.tNev.Location = new System.Drawing.Point(38, 45);
-            this.tNev.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tNev.Location = new System.Drawing.Point(57, 69);
             this.tNev.Name = "tNev";
-            this.tNev.Size = new System.Drawing.Size(46, 18);
+            this.tNev.Size = new System.Drawing.Size(0, 26);
             this.tNev.TabIndex = 1;
-            this.tNev.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label1.Location = new System.Drawing.Point(20, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(30, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.Size = new System.Drawing.Size(155, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Kurzus neve";
             // 
             // panelUj
             // 
-            this.panelUj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panelUj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelUj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.panelUj.Controls.Add(this.label3);
             this.panelUj.Controls.Add(this.comboBoxNyelv);
@@ -151,67 +149,66 @@
             this.panelUj.Controls.Add(this.txtDescription);
             this.panelUj.Controls.Add(this.txtName);
             this.panelUj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.panelUj.Location = new System.Drawing.Point(688, 8);
-            this.panelUj.Margin = new System.Windows.Forms.Padding(2);
+            this.panelUj.Location = new System.Drawing.Point(679, 12);
             this.panelUj.Name = "panelUj";
-            this.panelUj.Size = new System.Drawing.Size(459, 844);
+            this.panelUj.Size = new System.Drawing.Size(456, 646);
             this.panelUj.TabIndex = 2;
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label3.Location = new System.Drawing.Point(52, 433);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(62, 535);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.Size = new System.Drawing.Size(78, 29);
             this.label3.TabIndex = 13;
             this.label3.Text = "Nyelv";
             // 
             // comboBoxNyelv
             // 
+            this.comboBoxNyelv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxNyelv.BackColor = System.Drawing.Color.White;
             this.comboBoxNyelv.FormattingEnabled = true;
-            this.comboBoxNyelv.Location = new System.Drawing.Point(56, 472);
-            this.comboBoxNyelv.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxNyelv.Location = new System.Drawing.Point(170, 539);
             this.comboBoxNyelv.Name = "comboBoxNyelv";
-            this.comboBoxNyelv.Size = new System.Drawing.Size(168, 21);
+            this.comboBoxNyelv.Size = new System.Drawing.Size(147, 28);
             this.comboBoxNyelv.TabIndex = 12;
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label8.Location = new System.Drawing.Point(52, 657);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(62, 478);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(172, 20);
+            this.label8.Size = new System.Drawing.Size(195, 29);
             this.label8.TabIndex = 11;
-            this.label8.Text = "Minimális mennyiség";
+            this.label8.Text = "Min. mennyiség";
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label7.Location = new System.Drawing.Point(52, 586);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(62, 426);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.Size = new System.Drawing.Size(102, 29);
             this.label7.TabIndex = 10;
             this.label7.Text = "Költség";
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label6.Location = new System.Drawing.Point(52, 509);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(62, 375);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(27, 20);
+            this.label6.Size = new System.Drawing.Size(38, 29);
             this.label6.TabIndex = 9;
             this.label6.Text = "Ár";
             // 
@@ -220,10 +217,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label5.Location = new System.Drawing.Point(52, 83);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(49, 98);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 20);
+            this.label5.Size = new System.Drawing.Size(85, 29);
             this.label5.TabIndex = 8;
             this.label5.Text = "Leírás";
             // 
@@ -232,85 +228,84 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.label4.Location = new System.Drawing.Point(52, 10);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(49, 23);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 20);
+            this.label4.Size = new System.Drawing.Size(155, 29);
             this.label4.TabIndex = 7;
             this.label4.Text = "Kurzus neve";
             // 
             // CbReviews
             // 
+            this.CbReviews.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CbReviews.AutoSize = true;
             this.CbReviews.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.CbReviews.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.CbReviews.Location = new System.Drawing.Point(236, 728);
-            this.CbReviews.Margin = new System.Windows.Forms.Padding(2);
+            this.CbReviews.Location = new System.Drawing.Point(54, 608);
             this.CbReviews.Name = "CbReviews";
-            this.CbReviews.Size = new System.Drawing.Size(133, 24);
+            this.CbReviews.Size = new System.Drawing.Size(191, 33);
             this.CbReviews.TabIndex = 6;
             this.CbReviews.Text = "Értékelések?";
             this.CbReviews.UseVisualStyleBackColor = true;
             // 
             // numQuantity
             // 
+            this.numQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numQuantity.BackColor = System.Drawing.Color.White;
-            this.numQuantity.Location = new System.Drawing.Point(56, 690);
-            this.numQuantity.Margin = new System.Windows.Forms.Padding(2);
+            this.numQuantity.Location = new System.Drawing.Point(263, 483);
             this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(60, 20);
+            this.numQuantity.Size = new System.Drawing.Size(54, 26);
             this.numQuantity.TabIndex = 5;
             // 
             // CbTax
             // 
+            this.CbTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.CbTax.AutoSize = true;
             this.CbTax.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.CbTax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.CbTax.Location = new System.Drawing.Point(56, 728);
-            this.CbTax.Margin = new System.Windows.Forms.Padding(2);
+            this.CbTax.Location = new System.Drawing.Point(306, 608);
             this.CbTax.Name = "CbTax";
-            this.CbTax.Size = new System.Drawing.Size(73, 24);
+            this.CbTax.Size = new System.Drawing.Size(100, 33);
             this.CbTax.TabIndex = 4;
             this.CbTax.Text = "ÁFA?";
             this.CbTax.UseVisualStyleBackColor = true;
             // 
             // txtCost
             // 
+            this.txtCost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCost.BackColor = System.Drawing.Color.White;
-            this.txtCost.Location = new System.Drawing.Point(56, 620);
-            this.txtCost.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCost.Location = new System.Drawing.Point(170, 430);
             this.txtCost.Name = "txtCost";
-            this.txtCost.Size = new System.Drawing.Size(168, 20);
+            this.txtCost.Size = new System.Drawing.Size(147, 26);
             this.txtCost.TabIndex = 3;
             // 
             // txtPrice
             // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPrice.BackColor = System.Drawing.Color.White;
-            this.txtPrice.Location = new System.Drawing.Point(56, 544);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPrice.Location = new System.Drawing.Point(170, 379);
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(168, 20);
+            this.txtPrice.Size = new System.Drawing.Size(147, 26);
             this.txtPrice.TabIndex = 2;
             // 
             // txtDescription
             // 
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.txtDescription.BackColor = System.Drawing.Color.White;
-            this.txtDescription.Location = new System.Drawing.Point(64, 115);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(2);
-            this.txtDescription.MaximumSize = new System.Drawing.Size(202, 262);
+            this.txtDescription.Location = new System.Drawing.Point(67, 147);
+            this.txtDescription.MaximumSize = new System.Drawing.Size(301, 401);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(202, 262);
+            this.txtDescription.Size = new System.Drawing.Size(292, 209);
             this.txtDescription.TabIndex = 1;
             // 
             // txtName
             // 
             this.txtName.BackColor = System.Drawing.Color.White;
-            this.txtName.Location = new System.Drawing.Point(64, 41);
-            this.txtName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtName.Location = new System.Drawing.Point(67, 63);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(168, 20);
+            this.txtName.Size = new System.Drawing.Size(250, 26);
             this.txtName.TabIndex = 0;
             // 
             // btnInfo
@@ -318,10 +313,9 @@
             this.btnInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.btnInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.btnInfo.Location = new System.Drawing.Point(596, 294);
-            this.btnInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInfo.Location = new System.Drawing.Point(597, 273);
             this.btnInfo.Name = "btnInfo";
-            this.btnInfo.Size = new System.Drawing.Size(39, 75);
+            this.btnInfo.Size = new System.Drawing.Size(58, 115);
             this.btnInfo.TabIndex = 3;
             this.btnInfo.Text = ">";
             this.btnInfo.UseVisualStyleBackColor = false;
@@ -329,13 +323,15 @@
             // 
             // btnUj
             // 
+            this.btnUj.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.btnUj.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnUj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.btnUj.Location = new System.Drawing.Point(1220, 294);
-            this.btnUj.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUj.Location = new System.Drawing.Point(1150, 273);
+            this.btnUj.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnUj.Name = "btnUj";
-            this.btnUj.Size = new System.Drawing.Size(173, 83);
+            this.btnUj.Size = new System.Drawing.Size(125, 115);
             this.btnUj.TabIndex = 5;
             this.btnUj.Text = "A kurzus cseréje";
             this.btnUj.UseVisualStyleBackColor = false;
@@ -346,10 +342,9 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(228)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(78)))), ((int)(((byte)(105)))));
-            this.button1.Location = new System.Drawing.Point(76, 8);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(44, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 75);
+            this.button1.Size = new System.Drawing.Size(232, 89);
             this.button1.TabIndex = 6;
             this.button1.Text = "A lista frissítése";
             this.button1.UseVisualStyleBackColor = false;
@@ -357,19 +352,19 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(173)))), ((int)(((byte)(167)))));
-            this.ClientSize = new System.Drawing.Size(1437, 644);
+            this.ClientSize = new System.Drawing.Size(1878, 670);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUj);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.panelUj);
             this.Controls.Add(this.panelBetelt);
             this.Controls.Add(this.listBoxKurzusok);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelBetelt.ResumeLayout(false);

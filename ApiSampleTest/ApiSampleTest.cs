@@ -28,9 +28,9 @@ namespace ApiSampleTest
             }
 
             [Test]
-            [TestCase("", "100", "50", -1, false)]  // Hiányzik a név
+            [TestCase("", "100", "50", 2, false)]  // Hiányzik a név
             [TestCase("Product", "not a number", "50", 1, false)] // Az ár nem szám
-            [TestCase("Product", "100", "", -1, false)]  // Hiányzik a költség
+            [TestCase("Product", "100", "", 2, false)]  // Hiányzik a költség
             [TestCase("Product", "100", "50", -1, false)]  // Nincs kiválasztott nyelv
             [TestCase("Product", "100", "50", 2, true)]  // Minden adat rendben
             public void ValidateNewProductData_Tests(string name, string price, string cost, int nyelvIndex, bool expectedResult)

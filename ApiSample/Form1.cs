@@ -32,6 +32,7 @@ namespace ApiSample
         string nyelvkategoria;
         string torlendoProductBvin="";
         string image;
+        StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
         public Form1()
         {
             InitializeComponent();
@@ -200,7 +201,7 @@ namespace ApiSample
                 return false;
             if (!decimal.TryParse(txtCost.Text, out cost))
                 return false;
-            if (listBoxKurzusok.SelectedItem == null)
+            if (comboBoxNyelv.SelectedItem == null)
                 return false;
 
             return true;
@@ -272,10 +273,8 @@ namespace ApiSample
             ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
 
-            StreamWriter streamWriter = new StreamWriter("pythonhoz.txt");
-            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products" + ujProduct.Bvin);
+            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products\" + ujProduct.Bvin);
             streamWriter.WriteLine(image);
-            streamWriter.Close();
 
             // csoportos kategóriához hozzáadás
             var association = new CategoryProductAssociationDTO
@@ -391,7 +390,7 @@ namespace ApiSample
                 // Ha a felhasználó nem akarja bezárni az ablakot, akkor megállítjuk a bezárást
                 e.Cancel = true;
             }
-            
+            streamWriter.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

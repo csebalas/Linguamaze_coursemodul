@@ -405,7 +405,7 @@
         public System.Windows.Forms.TextBox txtCost;
         public System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxNyelv;
+        public System.Windows.Forms.ComboBox comboBoxNyelv;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -13,37 +13,40 @@ namespace ApiSampleTest
 {
     internal class ApiSampleTest
     {
-        private Form1 form = new Form1();
-        [SetUp]
-        public void Setup()
-        {
-            form.txtName = new TextBox();
-            form.txtPrice = new TextBox();
-            form.txtCost = new TextBox();
-            form.listBoxKurzusok = new ListBox();
+            private Form1 form = new Form1();
+            [SetUp]
+            public void Setup()
+            {
+                form.txtName = new TextBox();
+                form.txtPrice = new TextBox();
+                form.txtCost = new TextBox();
+                form.comboBoxNyelv = new ComboBox();
 
-            // Itt inicializáljuk a listBoxKurzusok elemeket
-            form.listBoxKurzusok.Items.Add("Kurzus1");
-            form.listBoxKurzusok.Items.Add("Kurzus2");
-            form.listBoxKurzusok.Items.Add("Kurzus3");
+                form.comboBoxNyelv.Items.Add("Angol");
+                form.comboBoxNyelv.Items.Add("Német");
+                form.comboBoxNyelv.Items.Add("Spanyol");
+            }
+
+            [Test]
+            [TestCase("", "100", "50", -1, false)]  // Hiányzik a név
+            [TestCase("Product", "not a number", "50", 1, false)] // Az ár nem szám
+            [TestCase("Product", "100", "", -1, false)]  // Hiányzik a költség
+            [TestCase("Product", "100", "50", -1, false)]  // Nincs kiválasztott nyelv
+            [TestCase("Product", "100", "50", 2, true)]  // Minden adat rendben
+            public void ValidateNewProductData_Tests(string name, string price, string cost, int nyelvIndex, bool expectedResult)
+            {
+                //Arrange
+                form.txtName.Text = name;
+                form.txtPrice.Text = price;
+                form.txtCost.Text = cost;
+                form.comboBoxNyelv.SelectedIndex = nyelvIndex;
+
+                //Act
+                var result = form.ValidateNewProductData();
+
+                //Assert
+                Assert.AreEqual(expectedResult, result);
+            }
         }
 
-        [Test]
-        [TestCase("", "100", "50", null, false)]  // Hiányzik a név
-        [TestCase("Product", "not a number", "50", "Kurzus", false)] // Az ár nem szám
-        [TestCase("Product", "100", "", "Kurzus", false)]  // Hiányzik a költség
-        [TestCase("Product", "100", "50", null, false)]  // Nincs kiválasztott kurzus
-        [TestCase("Product", "100", "50", "Kurzus", true)]  // Minden adat rendben
-        public void ValidateNewProductData_Tests(string name, string price, string cost, string kurzus, bool expectedResult)
-        {
-            //Arrange
-            //var form = new Form1();
-
-            //Act
-            var result = form.ValidateNewProductData();
-
-            //Assert
-            Assert.AreEqual(expectedResult, result);
-        }
     }
-}

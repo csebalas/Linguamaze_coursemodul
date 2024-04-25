@@ -190,8 +190,31 @@ namespace ApiSample
             KivAdatBetoltes();
         }
 
+        public bool ValidateNewProductData()
+        {
+            decimal price, cost;
+
+            // Ellenőrizzük, hogy a szükséges mezők ki vannak-e töltve
+            if (string.IsNullOrEmpty(txtName.Text))
+                return false;
+            if (!decimal.TryParse(txtPrice.Text, out price))
+                return false;
+            if (!decimal.TryParse(txtCost.Text, out cost))
+                return false;
+            if (comboBoxNyelv.SelectedItem == null)
+                return false;
+
+            return true;
+        }
+
+
         private void btnUj_Click(object sender, EventArgs e)
         {
+            if (!ValidateNewProductData())
+            {
+                MessageBox.Show("Hiányzó adatok! Kérem, töltse ki az összes szükséges mezőt.");
+                return;
+            }
             decimal price;
             var ujProduct = new ProductDTO();
 
@@ -218,7 +241,7 @@ namespace ApiSample
             ujProduct.ProductName = txtName.Text;
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
-            ujProduct.LongDescription=txtDescription.Text;
+            ujProduct.LongDescription = txtDescription.Text;
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
@@ -250,7 +273,7 @@ namespace ApiSample
             ujProduct.ImageFileMedium = image;
             termek = proxy.ProductsCreate(ujProduct, null);
 
-            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products" + ujProduct.Bvin);
+            streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products\" + ujProduct.Bvin);
             streamWriter.WriteLine(image);
 
             // csoportos kategóriához hozzáadás
@@ -261,7 +284,7 @@ namespace ApiSample
             };
 
             ApiResponse<CategoryProductAssociationDTO> categoryassociation = proxy.CategoryProductAssociationsCreate(association);
-            
+
 
             var association2 = new CategoryProductAssociationDTO
             {

@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSample", "ApiSample\ApiSample.csproj", "{43311DBA-1ABB-4DC3-B7B9-45FC8831BE9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiSampleTest", "ApiSampleTest\ApiSampleTest.csproj", "{F78FBD1F-6B71-418D-871C-55A3B8E54030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,15 @@ Global
 		{43311DBA-1ABB-4DC3-B7B9-45FC8831BE9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43311DBA-1ABB-4DC3-B7B9-45FC8831BE9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43311DBA-1ABB-4DC3-B7B9-45FC8831BE9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F78FBD1F-6B71-418D-871C-55A3B8E54030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F78FBD1F-6B71-418D-871C-55A3B8E54030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F78FBD1F-6B71-418D-871C-55A3B8E54030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F78FBD1F-6B71-418D-871C-55A3B8E54030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F502C522-FF01-487D-9F5F-3E993863A6E3}
 	EndGlobalSection
 EndGlobal

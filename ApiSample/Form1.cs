@@ -16,6 +16,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Net.Mail;
 using System.Net;
+using Hotcakes.CommerceDTO.v1.Shipping;
 
 namespace ApiSample
 {
@@ -27,6 +28,7 @@ namespace ApiSample
         ApiResponse<ProductDTO> termek;
         ApiResponse<long> szam;
         ApiResponse<ProductDTO> update;
+        ApiResponse<ShippableItemDTO> szallitas;
         List<Kurzus> productNames = new List<Kurzus>();
         Api proxy;
         string bvin;
@@ -241,9 +243,16 @@ namespace ApiSample
                 ujProduct.TaxSchedule = -1;
             }
             ujProduct.ProductName = txtName.Text;
+
+            var szallitas = new ShippableItemDTO();
+            szallitas.IsNonShipping = true;
+
+            product.ShippingDetails = szallitas;
+
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
             ujProduct.LongDescription = txtDescription.Text;
+            
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
@@ -260,6 +269,7 @@ namespace ApiSample
                 ujProduct.AllowReviews = false;
             }
             ujProduct.IsAvailableForSale = true;
+            
 
             ujProduct.SitePrice = decimal.Parse(txtPrice.Text);
             ujProduct.SiteCost = decimal.Parse(txtCost.Text);
@@ -273,6 +283,9 @@ namespace ApiSample
 
             ujProduct.ImageFileSmall = image;
             ujProduct.ImageFileMedium = image;
+            
+            
+
             termek = proxy.ProductsCreate(ujProduct, null);
 
             streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products\" + ujProduct.Bvin);

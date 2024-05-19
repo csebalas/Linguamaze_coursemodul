@@ -247,7 +247,7 @@ namespace ApiSample
             var szallitas = new ShippableItemDTO();
             szallitas.IsNonShipping = true;
 
-            product.ShippingDetails = szallitas;
+            ujProduct.ShippingDetails = szallitas;
 
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();

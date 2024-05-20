@@ -1,6 +1,11 @@
 ﻿using Hotcakes.CommerceDTO.v1.Client;
 using Hotcakes.CommerceDTO.v1.Catalog;
 using Hotcakes.CommerceDTO.v1;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +22,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Net;
 using Hotcakes.CommerceDTO.v1.Shipping;
+using System.Threading;
 
 namespace ApiSample
 {
@@ -30,6 +36,11 @@ namespace ApiSample
         ApiResponse<ProductDTO> update;
         ApiResponse<ShippableItemDTO> szallitas;
         List<Kurzus> productNames = new List<Kurzus>();
+        static string[] Scopes = { CalendarService.Scope.Calendar };
+        static string ApplicationName = "Google Calendar API Example";
+        private CalendarService calendarService;
+
+
         Api proxy;
         string bvin;
         Random random = new Random();
@@ -52,7 +63,68 @@ namespace ApiSample
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
             proxy = new Api(url, key);
+            GoogleAPI();
         }
+
+        private void GoogleAPI()
+        {
+            UserCredential credential;
+
+            using (var stream =
+                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = "token.json";
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                //Console.WriteLine("Credential file saved to: " + credPath);
+            }
+
+            // Create Google Calendar API service.
+            calendarService = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+        }
+
+        private void CreateRecurringEvents(DateTime startDate)
+        {
+            for (int i = 0; i < 32; i++)
+            {
+                var eventDate = startDate.AddDays(i * 7); // Weekly recurrence
+                CreateEvent(eventDate);
+            }
+        }
+
+        private void CreateEvent(DateTime eventDate)
+        {
+            Event newEvent = new Event()
+            {
+                Summary = tNev.Text,
+                Location = "LinguaMaze Nyelviskola",
+                Description = TLeiras.Text,
+                Start = new EventDateTime()
+                {
+                    DateTime = eventDate,
+                    TimeZone = "Europe/Budapest", // Set appropriate time zone
+                },
+                End = new EventDateTime()
+                {
+                    DateTime = eventDate.AddHours(1), // 1 hour event
+                    TimeZone = "Europe/Budapest",
+                },
+            };
+
+            String calendarId = "primary";
+            EventsResource.InsertRequest request = calendarService.Events.Insert(newEvent, calendarId);
+            Event createdEvent = request.Execute();
+            //Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
+        }
+
 
         private void controlClear()
         {      
@@ -214,6 +286,11 @@ namespace ApiSample
 
         private void btnUj_Click(object sender, EventArgs e)
         {
+            if (dateTimePicker1.Value is DateTime selectedDate)
+            {
+                CreateRecurringEvents(selectedDate);
+            }
+
             if (!ValidateNewProductData())
             {
                 MessageBox.Show("Hiányzó adatok! Kérem, töltse ki az összes szükséges mezőt.");

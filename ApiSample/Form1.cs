@@ -91,15 +91,6 @@ namespace ApiSample
             });
         }
 
-        private void CreateRecurringEvents(DateTime startDate)
-        {
-            for (int i = 0; i < 32; i++)
-            {
-                var eventDate = startDate.AddDays(i * 7); // Weekly recurrence
-                CreateEvent(eventDate);
-            }
-        }
-
         private void CreateEvent(DateTime eventDate)
         {
             Event newEvent = new Event()
@@ -117,6 +108,7 @@ namespace ApiSample
                     DateTime = eventDate.AddHours(1), // 1 hour event
                     TimeZone = "Europe/Budapest",
                 },
+                Recurrence = new String[] {"RRULE:FREQ=WEEKLY;COUNT=32"},
             };
 
             String calendarId = "primary";
@@ -288,7 +280,7 @@ namespace ApiSample
         {
             if (dateTimePicker1.Value is DateTime selectedDate)
             {
-                CreateRecurringEvents(selectedDate);
+                CreateEvent(selectedDate);
             }
 
             if (!ValidateNewProductData())

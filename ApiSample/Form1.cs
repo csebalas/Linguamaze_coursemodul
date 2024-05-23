@@ -70,23 +70,23 @@ namespace ApiSample
         {
             UserCredential credential;
 
-            //using (var stream =
-            //    new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
-            //{
-            //    string credPath = "token.json";
-            //    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-            //        GoogleClientSecrets.Load(stream).Secrets,
-            //        Scopes,
-            //        "user",
-            //        CancellationToken.None,
-            //        new FileDataStore(credPath, true)).Result;
-            //    //Console.WriteLine("Credential file saved to: " + credPath);
-            //}
+            using (var stream =
+                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = "token.json";
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                //Console.WriteLine("Credential file saved to: " + credPath);
+            }
 
             // Create Google Calendar API service.
             calendarService = new CalendarService(new BaseClientService.Initializer()
             {
-                //HttpClientInitializer = credential,
+                HttpClientInitializer = credential,
                 ApplicationName = ApplicationName,
             });
         }

@@ -1,6 +1,11 @@
 ﻿using Hotcakes.CommerceDTO.v1.Client;
 using Hotcakes.CommerceDTO.v1.Catalog;
 using Hotcakes.CommerceDTO.v1;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Calendar.v3;
+using Google.Apis.Calendar.v3.Data;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +21,8 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Net.Mail;
 using System.Net;
+using Hotcakes.CommerceDTO.v1.Shipping;
+using System.Threading;
 
 namespace ApiSample
 {
@@ -27,7 +34,13 @@ namespace ApiSample
         ApiResponse<ProductDTO> termek;
         ApiResponse<long> szam;
         ApiResponse<ProductDTO> update;
+        ApiResponse<ShippableItemDTO> szallitas;
         List<Kurzus> productNames = new List<Kurzus>();
+        static string[] Scopes = { CalendarService.Scope.Calendar };
+        static string ApplicationName = "Google Calendar API Example";
+        private CalendarService calendarService;
+
+
         Api proxy;
         string bvin;
         Random random = new Random();
@@ -50,7 +63,60 @@ namespace ApiSample
             if (key == string.Empty) key = "1-64869949-9801-4b5c-bd4b-326377c14130";
 
             proxy = new Api(url, key);
+            GoogleAPI();
         }
+
+        private void GoogleAPI()
+        {
+            UserCredential credential;
+
+            using (var stream =
+                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                string credPath = "token.json";
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "user",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                //Console.WriteLine("Credential file saved to: " + credPath);
+            }
+
+            // Create Google Calendar API service.
+            calendarService = new CalendarService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+        }
+
+        private void CreateEvent(DateTime eventDate)
+        {
+            Event newEvent = new Event()
+            {
+                Summary = tNev.Text,
+                Location = "LinguaMaze Nyelviskola",
+                Description = TLeiras.Text,
+                Start = new EventDateTime()
+                {
+                    DateTime = eventDate,
+                    TimeZone = "Europe/Budapest", // Set appropriate time zone
+                },
+                End = new EventDateTime()
+                {
+                    DateTime = eventDate.AddHours(1), // 1 hour event
+                    TimeZone = "Europe/Budapest",
+                },
+                Recurrence = new String[] {"RRULE:FREQ=WEEKLY;COUNT=32"},
+            };
+
+            String calendarId = "primary";
+            EventsResource.InsertRequest request = calendarService.Events.Insert(newEvent, calendarId);
+            Event createdEvent = request.Execute();
+            //Console.WriteLine("Event created: {0}", createdEvent.HtmlLink);
+        }
+
 
         private void controlClear()
         {      
@@ -212,6 +278,11 @@ namespace ApiSample
 
         private void btnUj_Click(object sender, EventArgs e)
         {
+            if (dateTimePicker1.Value is DateTime selectedDate)
+            {
+                CreateEvent(selectedDate);
+            }
+
             if (!ValidateNewProductData())
             {
                 MessageBox.Show("Hiányzó adatok! Kérem, töltse ki az összes szükséges mezőt.");
@@ -241,9 +312,16 @@ namespace ApiSample
                 ujProduct.TaxSchedule = -1;
             }
             ujProduct.ProductName = txtName.Text;
+
+            var szallitas = new ShippableItemDTO();
+            szallitas.IsNonShipping = true;
+
+            ujProduct.ShippingDetails = szallitas;
+
             szam = proxy.ProductsCountOfAll();
             ujProduct.Sku = (Convert.ToInt32(szam.Content) + 1).ToString();
             ujProduct.LongDescription = txtDescription.Text;
+            
             if (decimal.TryParse(txtPrice.Text, out price))
             {
                 ujProduct.SitePrice = price;
@@ -260,6 +338,7 @@ namespace ApiSample
                 ujProduct.AllowReviews = false;
             }
             ujProduct.IsAvailableForSale = true;
+            
 
             ujProduct.SitePrice = decimal.Parse(txtPrice.Text);
             ujProduct.SiteCost = decimal.Parse(txtCost.Text);
@@ -273,6 +352,9 @@ namespace ApiSample
 
             ujProduct.ImageFileSmall = image;
             ujProduct.ImageFileMedium = image;
+            
+            
+
             termek = proxy.ProductsCreate(ujProduct, null);
 
             streamWriter.WriteLine(@"C:\DNN\Portals\0\Hotcakes\Data\products\" + ujProduct.Bvin);
